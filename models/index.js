@@ -1,5 +1,5 @@
-import { Booking } from "./booking";
-import { Slot } from "./slot";
+import { Booking } from "./booking.model.js";
+import { Slot } from "./slot.model.js";
 import { Sequelize } from "sequelize";
 
 Slot.hasMany(Booking,

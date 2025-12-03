@@ -51,4 +51,4 @@ export const slotController = {
 
     await Slot.bulkCreate(slotsToCreate);
   }
-}
+};
