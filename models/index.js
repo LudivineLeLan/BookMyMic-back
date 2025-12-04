@@ -1,6 +1,6 @@
 import { Booking } from "./booking.model.js";
 import { Slot } from "./slot.model.js";
-import { Sequelize } from "sequelize";
+import { sequelize } from "./sequelize.client.js";
 
 Slot.hasMany(Booking,
   { foreignKey: "slot_id" });
@@ -8,4 +8,4 @@ Slot.hasMany(Booking,
 Booking.belongsTo(Slot,
   { foreignKey: "slot_id" });
 
-export { Booking, Slot, Sequelize };
+export { Booking, Slot, sequelize };

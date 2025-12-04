@@ -4,5 +4,5 @@ import { slotRouter } from "./slot.router.js";
 
 export const apiRouter = Router();
 
-apiRouter.use("/booking", bookingRouter);
+apiRouter.use("/bookings", bookingRouter);
 apiRouter.use("/slots", slotRouter);
