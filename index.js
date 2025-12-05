@@ -18,6 +18,7 @@ app.use(cors({
   origin: "https://bookmymic.onrender.com",
   methods: ["GET", "POST"],
 }));
+
 app.use(xss());
 
 app.use('/uploads', express.static('uploads'));
