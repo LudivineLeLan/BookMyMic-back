@@ -61,5 +61,5 @@ Exemple de body JSON :
 
 ## Liens
 
-[Repo front](https://github.com/LudivineLeLan/BookMyMic-front.git)
-[API déployée sur Render](https://bookmymic.onrender.com/)
+* [Repo front](https://github.com/LudivineLeLan/BookMyMic-front.git)
+* [API déployée sur Render](https://bookmymic.onrender.com/)
