@@ -1,4 +1,4 @@
-import { User } from '../models/index.js';
+import { User, Booking, Slot } from '../models/index.js';
 import Joi from "joi";
 import jwt from "jsonwebtoken";
 import { UserSchema } from '../schemas/user.schema.js';
@@ -14,7 +14,18 @@ export const userController = {
         email: data.email,
         password: hashedPassword
       });
-      res.status(201).json({ message: "Utilisateur créé", userId: user.id });
+
+      await Booking.update(
+        { user_id: user.id },
+        {
+          where: {
+            user_id: null,
+            email: user.email
+          }
+        }
+      );
+
+      res.status(201).json(user);
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: "Erreur lors de la création de l'utilisateur" });
@@ -45,4 +56,19 @@ export const userController = {
       res.status(500).json({ error: "Erreur lors de la connexion" });
     }
   },
+
+  async getUserBookings(req, res) {
+    try {
+      const { id } = req.params;
+      const bookings = await Booking.findAll({
+        where: { user_id: id },
+        include: [{ model: Slot }],
+        order: [[{ model: Slot }, "date", "ASC"]]
+      });
+      res.json(bookings);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Impossible de récupérer les réservations" });
+    }
+  }
 };
