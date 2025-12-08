@@ -16,7 +16,17 @@ Booking.init(
       references: {
         model: Slot,
         key: "id"
+      },
+
+      user_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: "user",
+          key: "id",
+        }
       }
+
     }
   },
   {
