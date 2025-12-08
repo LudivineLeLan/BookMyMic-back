@@ -3,6 +3,7 @@ import Joi from "joi";
 import jwt from "jsonwebtoken";
 import { UserSchema } from '../schemas/user.schema.js';
 import argon2 from "argon2";
+import { Op } from 'sequelize';
 
 export const userController = {
 
@@ -59,9 +60,11 @@ export const userController = {
 
   async getUserBookings(req, res) {
     try {
-      const { id } = req.params;
+      const { email } = req.params;
       const bookings = await Booking.findAll({
-        where: { user_id: id },
+        [Op.or]: [
+          { user_id: userId },
+          { user_email: email }],
         include: [{ model: Slot }],
         order: [[{ model: Slot }, "date", "ASC"]]
       });
