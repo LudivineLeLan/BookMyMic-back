@@ -15,7 +15,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(cors({
-  origin: "https://bookmymic.onrender.com",
+  origin: ["https://bookmymic.onrender.com",
+    "http://localhost:3000"],
   methods: ["GET", "POST"],
 }));
 
