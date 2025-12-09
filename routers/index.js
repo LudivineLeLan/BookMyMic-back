@@ -8,4 +8,4 @@ export const apiRouter = Router();
 
 apiRouter.use("/bookings", bookingRouter);
 apiRouter.use("/slots", slotRouter);
-apiRouter.use("user", userRouter);
+apiRouter.use("/user", userRouter);
