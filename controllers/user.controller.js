@@ -12,6 +12,7 @@ export const userController = {
       const data = Joi.attempt(req.body, UserSchema);
       const hashedPassword = await argon2.hash(data.password);
       const user = await User.create({
+        name: data.name,
         email: data.email,
         password: hashedPassword
       });
@@ -63,7 +64,7 @@ export const userController = {
       const { email } = req.params;
       const bookings = await Booking.findAll({
         [Op.or]: [
-          { user_id: userId },
+          { user_id: req.params.id },
           { user_email: email }],
         include: [{ model: Slot }],
         order: [[{ model: Slot }, "date", "ASC"]]
