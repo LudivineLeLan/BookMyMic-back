@@ -33,7 +33,7 @@ app.get("/", (req, res) => {
 app.listen(PORT, async () => {
   console.log(`Book My Mic is tuned on http://localhost:${PORT}`);
   try {
-    await sequelize.sync();
+    await sequelize.sync({ alter: true });
     await slotController.seedSlotsIfEmpty();
     console.log("Database created & slots seeded!");
   } catch (error) {
