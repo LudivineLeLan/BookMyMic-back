@@ -1,3 +1,9 @@
+import { DataTypes, Model } from "sequelize";
+import { sequelize } from "./sequelize.client.js";
+import { Slot } from "./slot.model.js";
+
+export class Booking extends Model { }
+
 Booking.init(
   {
     user_name: {
@@ -31,3 +37,5 @@ Booking.init(
     underscored: true
   }
 );
+
+
