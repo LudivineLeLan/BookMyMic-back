@@ -22,7 +22,7 @@ export const userController = {
         {
           where: {
             user_id: null,
-            email: user.email
+            user_email: user.email
           }
         }
       );
@@ -61,14 +61,24 @@ export const userController = {
 
   async getUserBookings(req, res) {
     try {
-      const { email } = req.params;
+      const userId = req.params.id;
+
+      const user = await User.findByPk(userId);
+      if (!user) {
+        return res.status(404).json({ error: "Utilisateur introuvable" });
+      }
+
       const bookings = await Booking.findAll({
-        [Op.or]: [
-          { user_id: req.params.id },
-          { user_email: email }],
+        where: {
+          [Op.or]: [
+            { user_id: userId },
+            { user_email: user.email }
+          ]
+        },
         include: [{ model: Slot }],
-        order: [[{ model: Slot }, "date", "ASC"]]
+        order: [[Slot, "date", "ASC"]]
       });
+
       res.json(bookings);
     } catch (error) {
       console.error(error);

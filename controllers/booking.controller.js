@@ -18,7 +18,7 @@ export const bookingController = {
 
   async createBooking(req, res) {
     try {
-      const { userName, slotId } = req.body;
+      const { userName, userEmail, slotId } = req.body;
 
       const slot = await Slot.findByPk(slotId);
       if (!slot) {
@@ -31,7 +31,9 @@ export const bookingController = {
 
       const booking = await Booking.create({
         user_name: userName,
+        user_email: userEmail,
         slot_id: slotId,
+        user_id: null
       });
       await slot.update({ available: false });
 
