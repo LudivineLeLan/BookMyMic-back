@@ -79,5 +79,29 @@ export const userController = {
       console.error(error);
       res.status(500).json({ error: "Impossible de récupérer les réservations" });
     }
+  },
+
+  async cancelBooking(req, res) {
+    try {
+      const bookingId = req.params.id;
+      const userId = req.user.id;
+
+      const booking = await Booking.findOne({
+        where: { id: bookingId, user_id: userId }
+      });
+
+      if (!booking) {
+        return res
+          .status(404)
+          .json({ message: "Réservation introuvable." });
+      }
+
+      await booking.destroy();
+
+      res.json({ message: "Réservation annulée." });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Erreur lors de l'annulation." });
+    }
   }
 };
