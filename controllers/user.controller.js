@@ -61,18 +61,13 @@ export const userController = {
 
   async getUserBookings(req, res) {
     try {
-      const userId = req.params.id;
-
-      const user = await User.findByPk(userId);
-      if (!user) {
-        return res.status(404).json({ error: "Utilisateur introuvable" });
-      }
+      const userId = req.user.id;
 
       const bookings = await Booking.findAll({
         where: {
           [Op.or]: [
             { user_id: userId },
-            { user_email: user.email }
+            { user_email: req.user.email }
           ]
         },
         include: [{ model: Slot }],
