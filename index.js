@@ -1,5 +1,6 @@
 import "dotenv/config";
 import express from "express";
+import path from 'path';
 import cors from "cors";
 import { xss } from "express-xss-sanitizer";
 import { apiRouter } from "./routers/index.js";
