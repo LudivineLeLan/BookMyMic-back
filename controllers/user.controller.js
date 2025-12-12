@@ -87,7 +87,8 @@ export const userController = {
       const userId = req.user.id;
 
       const booking = await Booking.findOne({
-        where: { id: bookingId, user_id: userId }
+        // where: { id: bookingId, user_id: userId }
+        where: { id: bookingId, [Op.or]: [{ user_id: req.user.id }, { user_email: req.user.email }] }
       });
 
       if (!booking) {
