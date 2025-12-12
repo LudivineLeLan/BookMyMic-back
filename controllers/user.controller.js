@@ -52,7 +52,7 @@ export const userController = {
         { expiresIn: "24h" }
       );
 
-      res.json({ message: "Connexion réussie", token });
+      res.json({ message: "Connexion réussie", token, id: user.id });
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: "Erreur lors de la connexion" });
