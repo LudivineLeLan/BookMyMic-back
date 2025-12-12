@@ -28,7 +28,7 @@ app.use('/uploads', express.static('uploads'));
 app.use(apiRouter);
 
 app.get("/", (req, res) => {
-  res.send("Bienvenue sur BookMyMic 🎤");
+  res.sendFile(path.resolve('path/to/build/index.html'));
 });
 
 app.listen(PORT, async () => {
