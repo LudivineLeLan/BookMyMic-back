@@ -17,7 +17,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors({
   origin: ["https://bookmymic.onrender.com",
     "http://localhost:3001"],
-  methods: ["GET", "POST"],
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
 app.use(xss());
