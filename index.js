@@ -7,7 +7,7 @@ import { sequelize } from "./models/sequelize.client.js";
 import { slotController } from "./controllers/slot.controller.js";
 
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3005;
 const app = express();
 
 app.use(express.json());
@@ -16,7 +16,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(cors({
   origin: ["https://bookmymic.onrender.com",
-    "http://localhost:3001"],
+    "http://localhost:3001",
+  "https://bookmymic.ludivinelelan.fr"],
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"]
 }));
